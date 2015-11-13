@@ -15,10 +15,7 @@ package org.camunda.bpm.dmn.unittest;
 import org.camunda.bpm.dmn.engine.DmnDecision;
 import org.camunda.bpm.dmn.engine.DmnDecisionTableResult;
 import org.camunda.bpm.dmn.engine.DmnEngine;
-import org.camunda.bpm.dmn.engine.DmnEngineConfiguration;
-import org.camunda.bpm.dmn.engine.impl.DefaultDmnEngineConfiguration;
 import org.camunda.bpm.dmn.engine.test.DmnEngineRule;
-import org.camunda.bpm.dmn.unittest.feel.CustomFeelEngineFactory;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.Variables;
 import org.junit.Before;
@@ -30,23 +27,18 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
-public class SimpleTestCase {
+public class SimpleTestCaseJuel {
 
   @Rule
-  public DmnEngineRule rule = new DmnEngineRule(getDmnEngineConfiguration());
+  public DmnEngineRule rule = new DmnEngineRule();
 
   public DmnEngine dmnEngine;
   public DmnDecision decision;
 
-  protected DmnEngineConfiguration getDmnEngineConfiguration() {
-    return new DefaultDmnEngineConfiguration()
-        .feelEngineFactory(new CustomFeelEngineFactory());
-  }
-
   @Before
   public void initEngineAndDecision() {
     dmnEngine = rule.getDmnEngine();
-    decision = dmnEngine.parseFirstDecision("Example.dmn");
+    decision = dmnEngine.parseFirstDecision("ExampleJuel.dmn");
   }
 
   @Test
